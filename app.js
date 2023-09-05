@@ -2,8 +2,6 @@
 
 let choices = ["rock", "paper", "scissors"];
 
-const playerChoice = getPlayerChoice();
-
 function getComputerChoice() {
     return choices[Math.floor(Math.random()*3)];
 }
@@ -22,16 +20,28 @@ function getPlayerChoice() {
 function playRound(playerChoice, computerChoice) {
 
     if (playerChoice === computerChoice) {
-        return "tie";
+        return "It's a tie! You both chose ${playerChoice}!";
     } 
     else if (
         playerChoice === "rock" && computerChoice === "scissors" ||
         playerChoice === "scissors" && computerChoice === "paper" ||
         playerChoice === "paper" && computerChoice === "rock"
         ) {
-        return "win";
+        return "Nice! ${playerChoice} beats ${computerChoice}!";
     }
     else {
-        return "lose";
+        return "Ooops! ${computerChoice} beats ${playerChoice}!";
     }
 }
+
+function game() {
+    let rounds = 0;
+    while (rounds < 10) {
+        let playerChoice = getPlayerChoice();
+        let computerChoice = getComputerChoice();
+        console.log(playRound(playerChoice, computerChoice));
+        rounds++;
+    }
+}
+
+game();
